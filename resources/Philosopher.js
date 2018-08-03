@@ -36,5 +36,6 @@ module.exports = (app) => {
                 .then((response) => res.status(200).send(response))
                 .catch(err => res.status(400).send(`failed to delete philosopher with ID: ${req.params.id}`));
         }
+
     );
 };
