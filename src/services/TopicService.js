@@ -1,8 +1,8 @@
 const TopicRepo = require('repositories/TopicRepository');
 
-const create = (requestor, topic) => {
+const create = (topic) => {
     topic.createdOn = Date.now();
-    topic.createdBy = requestor._id;
+    //topic.createdBy = requestor._id;
 
     return TopicRepo.create(topic);
 };

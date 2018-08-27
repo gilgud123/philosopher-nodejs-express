@@ -2,6 +2,12 @@ const PhilosopherService = require('services/PhilosopherService');
 
 module.exports = (app) => {
 
+    app.post('/philosopher', (req, res) => {
+        PhilosopherService.create(req.body)
+            .then((response) => res.status(200).send(response))
+            .catch(err => res.status(400).send('failed to create philosopher: ' + req.body.name));
+    });
+
     app.put('/philosopher/:id', (req, res) => {
         PhilosopherService.update(req.params.id, req.body)
             .then((response) => res.status(200).send(response))
@@ -36,6 +42,5 @@ module.exports = (app) => {
                 .then((response) => res.status(200).send(response))
                 .catch(err => res.status(400).send(`failed to delete philosopher with ID: ${req.params.id}`));
         }
-
     );
 };

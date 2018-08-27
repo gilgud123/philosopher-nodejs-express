@@ -3,7 +3,10 @@ const Categories = require('models/schemas/Categories');
 
 const Philosopher = {
     name: {type: String, required: true},
-    category: {type: [Categories], default: []},
+    category: {
+        type: [],
+        default: 'METAPHYSICS'
+        },
     description: {type: String, required: true},
     quotes: {type: [String], default: []} // an array of the id's of the philosopher's quotes
 };
