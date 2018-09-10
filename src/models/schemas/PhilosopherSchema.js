@@ -1,14 +1,11 @@
 const AuditSchema = require('models/schemas/AuditSchema');
-const Categories = require('models/schemas/Categories');
-
 const Philosopher = {
     name: {type: String, required: true},
-    category: {
-        type: [],
-        default: 'METAPHYSICS'
+    categories: {
+        type: String,
+        default: []
         },
-    description: {type: String, required: true},
-    quotes: {type: [String], default: []} // an array of the id's of the philosopher's quotes
+    description: {type: String, required: true}
 };
 
 module.exports = { ...AuditSchema, ...Philosopher};

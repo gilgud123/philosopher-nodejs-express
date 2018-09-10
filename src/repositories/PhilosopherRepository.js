@@ -8,7 +8,12 @@ const getByName = (name) => Philosopher.find(name).then(toObject);
 const getByCategory = (c) => Philosopher.find( {categories: c} ).then(listToObjects);
 const create = (rawPhilosopher) => new Philosopher(rawPhilosopher).save().then(toObject);
 const remove = (id) => Philosopher.findByIdAndRemove(id);
-const update = (id, text) => Philosopher.findOneAndUpdate(id, { description : text }).then((philosopher) => philosopher.toObject());
+
+const update = (id, text) => {
+    Philosopher.findOneAndUpdate({_id: id}, {description : text}, {new: true}).then((philosopher) => philosopher.toObject());
+};
+
+const patch = (id, text) => Philosopher.findByIdAndUpdate(id, text, {new: true }).then((obj) => obj.toObject());
 
 module.exports = {
     getAll,
@@ -17,5 +22,6 @@ module.exports = {
     getByName,
     create,
     remove,
-    update
+    update,
+    patch
 };

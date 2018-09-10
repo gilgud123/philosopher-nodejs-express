@@ -9,6 +9,8 @@ const create = (philosopher ) => {
 
 const update = (id, text ) => PhilosopherRepo.update(id, text);
 
+const patch = (id, text ) => PhilosopherRepo.patch(id, text);
+
 const getAll = () => PhilosopherRepo.getAll();
 
 const getById = (id) => PhilosopherRepo.getById(id);
@@ -21,6 +23,7 @@ const remove = (id) => PhilosopherRepo.remove(id);
 
 module.exports = {
     update,
+    patch,
     getAll,
     getById,
     getByName,

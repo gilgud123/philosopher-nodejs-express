@@ -36,4 +36,9 @@ require('resources/Topic')(app);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+const Seed = require('seed/Seed');
+//Seed.seedPhilosophers();
+//Seed.seedQuotes();
+//Seed.seedTopics();
+
 app.listen(process.env.PORT || Config.port, () => Logger.log('info', `Philosopher Quote API started on port ${process.env.PORT || Config.port}`));
