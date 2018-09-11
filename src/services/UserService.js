@@ -19,6 +19,26 @@ const getByEmail = (email) => UserRepo.getByProperty({email: email});
 
 const remove = (id) => UserRepo.remove(id);
 
+const authenticate = (email, password) => {
+
+    return Promise.resolve(UserRepo.getByProperties({ email: email })
+    ).then((users) => {
+
+        const user = R.head(users);
+        Logger.log('info', `User Service Authenticate: The logged in user ID is: ${user.name}`);
+
+        if (user && user.password === password) {
+            const data = R.omit(['password'], user);
+            //const role = user.role;
+            //data.permissions = R.uniq(roles.reduce((permissions, role) => permissions.concat(application.roles[role] || []), []));
+
+            return JWT.sign(data, process.env.SECRET || Config.secret);
+        }
+
+        return null;
+    });
+};
+
 module.exports = {
     patch,
     getAll,
@@ -26,5 +46,6 @@ module.exports = {
     getByName,
     getByEmail,
     create,
-    remove
+    remove,
+    authenticate
 };

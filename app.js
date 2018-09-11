@@ -2,6 +2,7 @@ require('app-module-path').addPath(`${__dirname}/src`);
 process.env.NODE_ENV !== 'production' ? require('dotenv').load() : null;
 
 global.Config = require('./config/local.config.json');
+global.R = require('ramda');
 
 const express = require('express');
 const path = require('path');
@@ -18,6 +19,9 @@ const Logger = require('helpers/LoggerHelper');
  */
 const Cors = require('cors');
 app.use(Cors());
+
+const Authentication = require('middleware/Authentication');
+app.use(Authentication());
 
 const BodyParser = require('body-parser');
 app.use(BodyParser.json());
