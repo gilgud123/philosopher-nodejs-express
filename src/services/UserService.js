@@ -1,5 +1,9 @@
 const UserRepo = require('repositories/UserRepository');
 
+const JWT = require('jsonwebtoken');
+
+const Logger = require('helpers/LoggerHelper');
+
 const create = (user, requestor = {_id: 'REGISTER'}) => {
     user.createdOn = Date.now();
     user.createdBy = requestor._id;
@@ -21,10 +25,10 @@ const remove = (id) => UserRepo.remove(id);
 
 const authenticate = (email, password) => {
 
-    return Promise.resolve(UserRepo.getByProperties({ email: email })
-    ).then((users) => {
+    return Promise.resolve(UserRepo.getByProperty({ email: email })
+    ).then((user) => {
 
-        const user = R.head(users);
+        //const user = R.head(users);
         Logger.log('info', `User Service Authenticate: The logged in user ID is: ${user.name}`);
 
         if (user && user.password === password) {

@@ -8,6 +8,6 @@ module.exports = (App) => {
                 if (token) res.status(200).send(token);
                 else res.status(400).send("Unauthorized!");
             })
-            .catch((err) => res.status(400).send(err));
+            .catch((err) => res.status(400).send("Error: " + err));
     });
 };

@@ -37,6 +37,7 @@ require('resources/Philosopher')(app);
 require('resources/Quote')(app);
 require('resources/Topic')(app);
 require('resources/User')(app);
+require('resources/Auth')(app);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
