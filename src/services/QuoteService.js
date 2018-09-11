@@ -1,8 +1,8 @@
 const QuoteRepo = require('repositories/QuoteRepository');
 
-const create = (quote ) => {
+const create = (quote, requestor ) => {
     quote.createdOn = Date.now();
-    //quote.createdBy = requestor._id;
+    quote.createdBy = requestor._id;
 
     return QuoteRepo.create(quote);
 };

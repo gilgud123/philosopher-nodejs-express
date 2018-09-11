@@ -3,13 +3,13 @@ const TopicService = require('services/TopicService');
 module.exports = (app) => {
 
     app.post('/topic', (req, res) => {
-        TopicService.create(req.body)
+        TopicService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('failed to create topic'));
     });
 
     app.put('/topic/:id', (req, res) => {
-        TopicService.update(req.params.id, req.body)
+        TopicService.update(req.params.id, req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send(`failed to change update text of the topic with ID: ${req.params.id}`));
     });

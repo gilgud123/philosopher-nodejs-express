@@ -1,17 +1,18 @@
 const PhilosopherService = require('services/PhilosopherService');
+const Authorization = require('middleware/Authorization');
 
 const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
     app.post('/philosopher', (req, res) => {
-        PhilosopherService.create(req.body)
+        PhilosopherService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('Failed to create philosopher: ' + req.body.name));
     });
 
     app.patch('/philosopher/:id', (req, res) => {
-        PhilosopherService.patch(req.params.id, req.body)
+        PhilosopherService.patch(req.params.id, req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send(`Failed to change update description of the philosopher with ID: ${req.params.id}`));
     });

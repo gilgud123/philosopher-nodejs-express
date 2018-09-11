@@ -3,7 +3,7 @@ const QuoteService = require('services/QuoteService');
 module.exports = (app) => {
 
     app.post('/quote', (req, res) => {
-        QuoteService.create(req.body)
+        QuoteService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('failed to create quote'));
     });

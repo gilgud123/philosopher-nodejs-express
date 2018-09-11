@@ -7,7 +7,7 @@ const getById = (id) => Topic.findById(id).then(toObject);
 const getByProperty = (p) => Topic.findOne(p).then(toObject);
 const create = (rawTopic) => new Topic(rawTopic).save().then(toObject);
 const remove = (id) => Topic.findByIdAndRemove(id);
-const update = (id, text) => Topic.findByIdAndUpdate(id, text, {new: true}).then((topic) => topic.toObject());
+const update = (id, topic) => Topic.findByIdAndUpdate(id, topic, {new: true}).then((topic) => topic.toObject());
 
 module.exports = {
     getAll,

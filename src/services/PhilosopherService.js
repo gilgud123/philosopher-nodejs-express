@@ -1,15 +1,20 @@
 const PhilosopherRepo = require('repositories/PhilosopherRepository');
 
-const create = (philosopher ) => {
+const create = (philosopher, requestor ) => {
     philosopher.createdOn = Date.now();
-    //philosopher.createdBy = requestor._id;
+    philosopher.createdBy = requestor._id;
 
     return PhilosopherRepo.create(philosopher);
 };
 
-const update = (id, text ) => PhilosopherRepo.update(id, text);
+const patch = (id, text, requestor ) => {
+    philosopher.lastModifiedOn = Date.now();
+    philosopher.lastModifiedBy = requestor._id;
 
-const patch = (id, text ) => PhilosopherRepo.patch(id, text);
+    PhilosopherRepo.patch(id, text);
+};
+
+const update = (id, text ) => PhilosopherRepo.update(id, text);
 
 const getAll = () => PhilosopherRepo.getAll();
 
