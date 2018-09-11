@@ -14,10 +14,10 @@ const philosophers = [
     {
         "name" : "Aristotle",
         "categories" : [
-            'METAPHYSICS',
-            'ETHICS',
-            'EPISTEMOLOGY',
-            'AESTHETICS'
+            "METAPHYSICS",
+            "ETHICS",
+            "EPISTEMOLOGY",
+            "AESTHETICS"
         ],
         "description" : "A philosopher, scientist, historian and the teacher of Alexandre the Great, Aristotles teachings remain immensly influential in our cultlure. He was first to start a systematic classification of schientific exploits of his time laying basis for many branches of science. His philosophical views are less rigid and more dialictical than those of Plato, as was his vision of politics, with an enlightened ruler, such as Alexandre, at the head of a state."
     },

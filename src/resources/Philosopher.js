@@ -30,20 +30,21 @@ module.exports = (app) => {
     );
 
     app.get('/philosopher/name/:name', (req, res) => {
-        Logger.log('info', `Philosopher by name: ${req.params.name}`);
             PhilosopherService.getByName(req.params.name)
                 .then((response) => res.status(200).send(response))
                 .catch(err => res.status(400).send(`Philosopher by name: ${req.params.id} does not exist in the database.`));
         }
     );
 
-    app.get('philosopher/:category', (req, res) => {
+    app.get('/philosopher/category/:category', (req, res) => {
+        Logger.log('info', `Philosopher by category: ${req.params.category}`);
         PhilosopherService.getByCategory(req.params.category)
-            .then((response) => res.status(200).send(response));
+            .then((response) => res.status(200).send(response))
+            .catch(err => res.status(400).send(`No philosophers exist in category: ${req.params.id}.`));
         }
     );
 
-    app.delete('philosopher/:id', (req, res) => {
+    app.delete('/philosopher/:id', (req, res) => {
             PhilosopherService.remove(req.params.id)
                 .then((response) => res.status(200).send(response))
                 .catch(err => res.status(400).send(`failed to delete philosopher with ID: ${req.params.id}`));

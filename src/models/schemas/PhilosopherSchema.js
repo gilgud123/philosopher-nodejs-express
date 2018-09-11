@@ -2,7 +2,7 @@ const AuditSchema = require('models/schemas/AuditSchema');
 const Philosopher = {
     name: {type: String, required: true},
     categories: {
-        type: String,
+        type: Array,
         default: []
         },
     description: {type: String, required: true}
