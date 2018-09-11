@@ -13,7 +13,7 @@ const getAll = () => TopicRepo.getAll();
 
 const getById = (id) => TopicRepo.getById(id);
 
-const getByQuote = (quote) => TopicRepo.getByProperty({ quotes: quote });
+const getByName = (name) => TopicRepo.getByProperty({ text: name });
 
 const remove = (id) => TopicRepo.remove(id);
 
@@ -22,6 +22,6 @@ module.exports = {
     create,
     getAll,
     getById,
-    getByQuote,
+    getByName,
     remove
 };

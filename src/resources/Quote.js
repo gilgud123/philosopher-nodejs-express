@@ -30,7 +30,8 @@ module.exports = (app) => {
 
     app.get('/quote/philosopher/:name', (req, res) => {
             QuoteService.getByPhilosopher(req.params.name)
-                .then((response) => res.status(200).send(response));
+                .then((response) => res.status(200).send(response))
+                .catch(err => res.status(400).send(`No quotes for: ${req.params.name} in the database.`));
         }
     );
 
