@@ -3,10 +3,12 @@ const {ObjectID} = require('mongodb');
 const {Philosopher} = require('models/Philosopher');
 const {Quote} = require('models/Quote');
 const {Topic} = require('models/Topic');
+const {User} = require('models/User');
 
 const PhilosopherService = require('services/PhilosopherService');
 const QuoteService = require('services/QuoteService');
 const TopicService = require('services/TopicService');
+const UserService = require('services/UserService');
 
 const Logger = require('helpers/LoggerHelper');
 
@@ -206,6 +208,20 @@ const topics = [
     {"text" : "truth"}
 ];
 
+const users = [
+    {
+        "name" : "Harold Finch",
+        "email" : "katya.devries@jstack.eu",
+        "password" : "prutser123",
+        "role" : 'admin'
+    },
+    {
+        "name" : "John Reese",
+        "email" : "k.devries@scarlet.be",
+        "password" : "prutser123"
+    }
+];
+
 const seedPhilosophers = () => {
     philosophers.forEach((philosopher) => {
         PhilosopherService.create(philosopher)
@@ -230,8 +246,17 @@ const seedTopics = () => {
     })
 };
 
+const seedUsers = () => {
+    users.forEach((user) => {
+        UserService.create(user)
+            .then(resp => Logger.log('info', `User added: ${user.name}`))
+            .catch(err => console.log('info', `The following user already exists: ${topic.name}`));
+    })
+};
+
 module.exports = {
-  seedPhilosophers,
-  seedQuotes,
-  seedTopics
+    seedPhilosophers,
+    seedQuotes,
+    seedTopics,
+    seedUsers
 };

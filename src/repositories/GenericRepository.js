@@ -1,3 +1,8 @@
+/**
+ * Only as an example. Not in use in this app.
+ * @type {*|Mongoose}
+ */
+
 const Mongoose = require('mongoose');
 Mongoose.connect(process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/jstack-authentication');
 

@@ -40,7 +40,7 @@ module.exports = (app) => {
         Logger.log('info', `Philosopher by category: ${req.params.category}`);
         PhilosopherService.getByCategory(req.params.category)
             .then((response) => res.status(200).send(response))
-            .catch(err => res.status(400).send(`No philosophers exist in category: ${req.params.id}.`));
+            .catch(err => res.status(400).send(`No philosophers exist in category: ${req.params.category}.`));
         }
     );
 
