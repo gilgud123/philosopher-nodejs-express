@@ -7,7 +7,8 @@ const User = {
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
-    }
+    },
+    resetPasswordToken: {type: String}
 };
 
 module.exports = { ...AuditSchema, ...User};

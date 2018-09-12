@@ -146,7 +146,330 @@
           }
         }
       }
-    }
+    },
+    "/quote": {
+      "get": {
+        "description": "Returns the list of all quotes in the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of quotes.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new Quote",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A quote object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quote/:id": {
+      "get": {
+        "description": "Returns the quote with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A quote object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes the quote with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted quote object",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quote/topic/:topic": {
+      "get": {
+        "description": "Returns a list of quotes with the given topic",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of quote objects.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quote/philosopher/:name": {
+      "get": {
+        "description": "Returns the quotes by philosopher with the given name",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of quote objects.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Quote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topic": {
+      "get": {
+        "description": "Returns the list of all topics in the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of topics.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Topic"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new topic",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A topic object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Topic"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topic/:id": {
+      "get": {
+        "description": "Returns the topic with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A topic object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Topic"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Updates the topic with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A topic object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/topic"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes the topic with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted topic object",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Topic"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topic/name/:name": {
+      "get": {
+        "description": "Returns the topic by name",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A topic object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Topic"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "description": "Returns the list of all user in the database. Admin authorization required.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/User"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new user. Admin authorization required.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/:id": {
+      "get": {
+        "description": "Returns the user with the given id. Authorization: admin or user with the same id.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/User"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Updates the user with the given id. Authorization: admin or user with the same id.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/User"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes the user with the given id. Authorization: admin or user with the same id.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted user object",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authentication/authenticate": {
+      "post": {
+        "description": "Authenticates the login by email and password.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A JWT token"
+            },
+          "400": {
+            "description": "Unauthorized!"
+          }
+          }
+        }
+      }
   },
   "definitions": {
     "Philosopher": {
@@ -229,6 +552,9 @@
         "role": {
           "type": "string",
           "enum": ["user", "admin"]
+        },
+        "resetPasswordToken": {
+          "type": "string"
         }
       }
     }
