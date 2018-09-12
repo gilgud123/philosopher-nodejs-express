@@ -37,6 +37,114 @@
             }
           }
         }
+      },
+      "post": {
+        "description": "Creates a new philosopher",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A philosopher object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/philosopher/:id": {
+      "get": {
+        "description": "Returns the philosopher with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A philosopher object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Updates the description field of the philosopher with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An updated philosopher object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes the philosopher with the given id",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted philosopher object",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/philosopher/category/:category": {
+      "get": {
+        "description": "Returns a list of philosophers for the given category",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of philosophers.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/philosopher/name/:name": {
+      "get": {
+        "description": "Returns the philosopher with the given name",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A philosopher object.",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
       }
     }
   },
