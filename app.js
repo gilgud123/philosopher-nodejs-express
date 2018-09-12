@@ -20,8 +20,8 @@ const Logger = require('helpers/LoggerHelper');
 const Cors = require('cors');
 app.use(Cors());
 
-const Authentication = require('middleware/Authentication');
-app.use(Authentication());
+//const Authentication = require('middleware/Authentication');
+//app.use(Authentication());
 
 const BodyParser = require('body-parser');
 app.use(BodyParser.json());
@@ -42,10 +42,22 @@ require('resources/Auth')(app);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+/**
+ * Seed method: uncomment as needed.
+ */
 const Seed = require('seed/Seed');
 //Seed.seedPhilosophers();
 //Seed.seedQuotes();
 //Seed.seedTopics();
 //Seed.seedUsers();
+
+/**
+ * Swagger documentation setup
+ */
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/v1', (req, res, next) => next());
 
 app.listen(process.env.PORT || Config.port, () => Logger.log('info', `Philosopher Quote API started on port ${process.env.PORT || Config.port}`));

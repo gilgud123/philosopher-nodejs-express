@@ -1,6 +1,5 @@
 /**
  * Only as an example. Not in use in this app.
- * @type {*|Mongoose}
  */
 
 const Mongoose = require('mongoose');

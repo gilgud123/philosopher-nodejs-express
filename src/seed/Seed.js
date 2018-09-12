@@ -199,7 +199,7 @@ const quotes = [
 
 const topics = [
     {"text" : "morals"},
-    { "text" : "religion"},
+    {"text" : "religion"},
     {"text" : "metaphysics"},
     {"text" : "politics"},
     {"text" : "cognition"},

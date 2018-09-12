@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Philosopher Quote Express",
+    "description": "A Philosopher Quote REST API that provides a database of philosopher quotes.",
+    "contact": {
+      "name": "kdvblended@gmail.com"
+    }
+  },
+  "host": "none",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/philosopher": {
+      "get": {
+        "description": "Returns the list of all philosophers in the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of philosophers.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/models/Philosopher"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Philosopher": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Quote" : {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "philosopher"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "topics": {
+          "type": "array"
+        }
+      }
+    },
+    "Topic" : {
+      "type": "object",
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "User" : {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "admin"]
+        }
+      }
+    }
+  }
+}
