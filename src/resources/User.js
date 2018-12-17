@@ -1,11 +1,13 @@
 const UserService = require('services/UserService');
 const Authorization = require('middleware/Authorization');
 
+const {modelValidator} = require('helpers/ValidationHelper');
+const User = require('models/User');
 const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
-    app.post('/user', /*Authorization.AuthorizeAdmin,*/ (req, res) => {
+    app.post('/user', modelValidator(User), /*Authorization.AuthorizeAdmin,*/ (req, res) => {
         UserService.create(req.body)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('Failed to create user: ' + req.body.name));

@@ -1,3 +1,7 @@
+/**
+ * Only as an example. Not in use in this app.
+ */
+
 const Philosopher = require('models/Philosopher');
 
 const toObject = (obj) => obj.toObject();

@@ -1,4 +1,5 @@
 const QuoteService = require('services/QuoteService');
+const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
@@ -29,6 +30,7 @@ module.exports = (app) => {
     );
 
     app.get('/quote/philosopher/:name', (req, res) => {
+        Logger.log('info', 'This is the GetQuotesByPhilosopherName method');
             QuoteService.getByPhilosopher(req.params.name)
                 .then((response) => res.status(200).send(response))
                 .catch(err => res.status(400).send(`No quotes for: ${req.params.name} in the database.`));

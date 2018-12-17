@@ -2,7 +2,7 @@ const Quote = require('models/Quote');
 
 const toObject = (obj) => obj.toObject();
 const listToObjects = (list) => list.map(toObject);
-const getAll = () => Quote.find().then(listToObjects);
+const getAll = () => Quote.find().sort('philosopher').then(listToObjects);
 const getById = (id) => Quote.findById(id).then(toObject);
 const getByProperty = (raw) => Quote.find(raw).then(listToObjects); // By topic of by philosopher id
 const create = (rawQuote) => new Quote(rawQuote).save().then(toObject);

@@ -1,8 +1,8 @@
 const Mongoose = require('mongoose');
-
-Mongoose.connect(process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/philosopher-node-express');
-
-module.exports = (name, schemaObject) => {
-    const schema = new Mongoose.Schema(schemaObject);
+const model = (name, schemaObject, options = { versionKey: false, minimize: false }, indexes = []) => {
+    const schema = new Mongoose.Schema(schemaObject, options);
+    indexes.map(index => schema.index(index));
     return Mongoose.model(name, schema);
 };
+
+module.exports = { model };

@@ -1,4 +1,5 @@
-const PhilosopherRepo = require('repositories/PhilosopherRepository');
+const Philosopher = require('models/Philosopher');
+const PhilosopherRepo = require('repositories/GenericRepository')(Philosopher);
 
 const create = (philosopher, requestor ) => {
     philosopher.createdOn = Date.now();
@@ -16,13 +17,13 @@ const patch = (id, text, requestor ) => {
 
 const update = (id, text ) => PhilosopherRepo.update(id, text);
 
-const getAll = () => PhilosopherRepo.getAll();
+const getAll = () => PhilosopherRepo.findAll();
 
 const getById = (id) => PhilosopherRepo.getById(id);
 
-const getByName = (name) => PhilosopherRepo.getByName(name);
+const getByName = (name) => PhilosopherRepo.getByProperties({name: name});
 
-const getByCategory = (category) => PhilosopherRepo.getByCategory(category);
+const getByCategory = (category) => PhilosopherRepo.getByProperties({ categories: category } );
 
 const remove = (id) => PhilosopherRepo.remove(id);
 

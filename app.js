@@ -1,4 +1,5 @@
 require('app-module-path').addPath(`${__dirname}/src`);
+
 process.env.NODE_ENV !== 'production' ? require('dotenv').load() : null;
 
 global.Config = require('./config/local.config.json');
@@ -46,8 +47,9 @@ app.use('/users', usersRouter);
  * Seed method: uncomment as needed.
  */
 const Seed = require('seed/Seed');
+const SeedQ = require('seed/SeedQuotes');
 //Seed.seedPhilosophers();
-//Seed.seedQuotes();
+//SeedQ.seedQuotes();
 //Seed.seedTopics();
 //Seed.seedUsers();
 
