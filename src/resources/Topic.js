@@ -1,8 +1,11 @@
 const TopicService = require('services/TopicService');
 
+const Topic = require('models/Topic');
+const {modelValidator} = require('helpers/ValidationHelper');
+
 module.exports = (app) => {
 
-    app.post('/topic', (req, res) => {
+    app.post('/topic', modelValidator(Topic), (req, res) => {
         TopicService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('failed to create topic'));

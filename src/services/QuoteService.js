@@ -8,13 +8,13 @@ const create = (quote, requestor ) => {
     return QuoteRepo.create(quote);
 };
 
-const getAll = () => QuoteRepo.getAll();
+const getAll = () => QuoteRepo.findAll();
 
 const getById = (id) => QuoteRepo.getById(id);
 
-const getByTopic = (topic) => QuoteRepo.getByProperty({ topics: topic });
+const getByTopic = (topic) => QuoteRepo.getByProperties({ topics: topic });
 
-const getByPhilosopher = (name) => QuoteRepo.getByProperty( {philosopher: name} );
+const getByPhilosopher = (name) => QuoteRepo.getByProperties( {philosopher: name} );
 
 const remove = (id) => QuoteRepo.remove(id);
 

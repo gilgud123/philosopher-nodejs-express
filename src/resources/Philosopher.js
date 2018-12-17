@@ -1,5 +1,5 @@
 const PhilosopherService = require('services/PhilosopherService');
-const Authorization = require('middleware/Authorization');
+const { AuthorizeAdmin, AuthorizeAdminOrLoggedInUser } = require('middleware/Authorization');
 
 const Philosopher = require('models/Philosopher');
 const {modelValidator} = require('helpers/ValidationHelper');
@@ -7,7 +7,7 @@ const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
-    app.post('/philosopher', modelValidator(Philosopher), (req, res) => {
+    app.post('/philosopher', modelValidator(Philosopher), AuthorizeAdminOrLoggedInUser, (req, res) => {
         PhilosopherService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('Failed to create philosopher: ' + req.body.name));

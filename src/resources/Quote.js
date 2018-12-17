@@ -1,9 +1,12 @@
 const QuoteService = require('services/QuoteService');
+
+const Quote = require('models/Quote');
+const {modelValidator} = require('helpers/ValidationHelper');
 const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
-    app.post('/quote', (req, res) => {
+    app.post('/quote', modelValidator(Quote), (req, res) => {
         QuoteService.create(req.body, req.requestor)
             .then((response) => res.status(200).send(response))
             .catch(err => res.status(400).send('failed to create quote'));

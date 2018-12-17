@@ -1,4 +1,5 @@
-const TopicRepo = require('repositories/TopicRepository');
+const Topic = require('models/Topic');
+const TopicRepo = require('repositories/GenericRepository')(Topic);
 
 const create = (topic, requestor) => {
     topic.createdOn = Date.now();
@@ -9,11 +10,11 @@ const create = (topic, requestor) => {
 
 const update = (id, text) => TopicRepo.update(id, text);
 
-const getAll = () => TopicRepo.getAll();
+const getAll = () => TopicRepo.findAll();
 
 const getById = (id) => TopicRepo.getById(id);
 
-const getByName = (name) => TopicRepo.getByProperty({ text: name });
+const getByName = (name) => TopicRepo.getByProperties({ text: name });
 
 const remove = (id) => TopicRepo.remove(id);
 

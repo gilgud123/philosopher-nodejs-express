@@ -1,4 +1,5 @@
-const UserRepo = require('repositories/UserRepository');
+const User = require('models/User');
+const UserRepo = require('repositories/GenericRepository')(User);
 const {resetPasswordMail} = require('helpers/MailConfigMailer');
 
 const JWT = require('jsonwebtoken');
@@ -15,24 +16,24 @@ const create = (user, requestor = {_id: 'REGISTER'}) => {
 
 const patch = (id, raw ) => UserRepo.patch(id, raw);
 
-const getAll = () => UserRepo.getAll();
+const getAll = () => UserRepo.findAll();
 
 const getById = (id) => UserRepo.getById(id);
 
-const getByName = (name) => UserRepo.getByProperty({name: name});
+const getByName = (name) => UserRepo.getByProperties({name: name});
 
-const getByEmail = (email) => UserRepo.getByProperty({email: email});
+const getByEmail = (email) => UserRepo.getByProperties({email: email});
 
-const getByToken = (token) => UserRepo.getByProperty({ resetPasswordToken: token});
+const getByToken = (token) => UserRepo.getByProperties({ resetPasswordToken: token});
 
 const remove = (id) => UserRepo.remove(id);
 
 const authenticate = (email, password) => {
 
-    return Promise.resolve(UserRepo.getByProperty({ email: email })
-    ).then((user) => {
+    return Promise.resolve(UserRepo.getByProperties({ email: email })
+    ).then((users) => {
 
-        //const user = R.head(users);
+        const user = R.head(users);
         Logger.log('info', `User Service Authenticate: The logged in user ID is: ${user.name}`);
 
         if (user && user.password === password) {

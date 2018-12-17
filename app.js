@@ -21,8 +21,8 @@ const Logger = require('helpers/LoggerHelper');
 const Cors = require('cors');
 app.use(Cors());
 
-//const Authentication = require('middleware/Authentication');
-//app.use(Authentication());
+const Authentication = require('middleware/Authentication');
+app.use(Authentication());
 
 const BodyParser = require('body-parser');
 app.use(BodyParser.json());
