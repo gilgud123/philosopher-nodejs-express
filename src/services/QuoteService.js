@@ -1,4 +1,5 @@
-const QuoteRepo = require('repositories/QuoteRepository');
+const Quote = require('models/Quote');
+const QuoteRepo = require('repositories/GenericRepository')(Quote);
 
 const create = (quote, requestor ) => {
     quote.createdOn = Date.now();
