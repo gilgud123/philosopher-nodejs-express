@@ -17,6 +17,7 @@ const getById = (id) => TopicRepo.getById(id);
 const getByName = (name) => TopicRepo.getByProperties({ text: name });
 
 const remove = (id) => TopicRepo.remove(id);
+const hardRemove = (id) => TopicRepo.hardRemove(id);
 
 module.exports = {
     update,
@@ -24,5 +25,6 @@ module.exports = {
     getAll,
     getById,
     getByName,
-    remove
+    remove,
+    hardRemove
 };

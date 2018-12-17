@@ -39,7 +39,7 @@ module.exports = (app) => {
 
     app.delete('/user/:id/hardremove', AuthorizeAdmin, (req, res) => {
         ResponseHelper.promiseResponseHandler(
-            req, res, UserService.hardRemove(req.params.id, req.requestor));
+            req, res, UserService.hardRemove(req.params.id));
     });
 
 };

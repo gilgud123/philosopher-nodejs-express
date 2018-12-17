@@ -1,49 +1,51 @@
 const QuoteService = require('services/QuoteService');
 
+const {
+    AuthorizeAdmin,
+    AuthorizeAdminOrLoggedInUser
+} = require('middleware/Authorization');
+
 const Quote = require('models/Quote');
 const {modelValidator} = require('helpers/ValidationHelper');
+const ResponseHelper = require('helpers/ResponseHelper');
 const Logger = require('helpers/LoggerHelper');
 
 module.exports = (app) => {
 
-    app.post('/quote', modelValidator(Quote), (req, res) => {
-        QuoteService.create(req.body, req.requestor)
-            .then((response) => res.status(200).send(response))
-            .catch(err => res.status(400).send('failed to create quote'));
+    app.post('/quote', modelValidator(Quote), AuthorizeAdminOrLoggedInUser, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.create(req.body, req.requestor));
     });
 
-    app.get('/quote', (req, res) => {
-        QuoteService.getAll()
-            .then((response) => res.status(200).send(response))
-            .catch(err => res.status(400).send('failed to get all quotes'));
+    app.get('/quote', AuthorizeAdminOrLoggedInUser, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.getAll());
     });
 
-    app.get('/quote/:id', (req, res) => {
-            QuoteService.getById(req.params.id)
-                .then((response) => res.status(200).send(response))
-                .catch(err => res.status(400).send(`Quote with ID: ${req.params.id} does not exist in the database.`));
-        }
-    );
+    app.get('/quote/:id', AuthorizeAdminOrLoggedInUser, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.getById(req.params.id));
+    });
 
-    app.get('/quote/topic/:topic', (req, res) => {
-            QuoteService.getByTopic(req.params.topic)
-                .then((response) => res.status(200).send(response))
-                .catch(err => res.status(400).send(`No quotes with topic: ${req.params.topic} in the database.`));
-        }
-    );
+    app.get('/quote/topic/:topic', AuthorizeAdminOrLoggedInUser, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.getByTopic(req.params.topic));
+    });
 
-    app.get('/quote/philosopher/:name', (req, res) => {
+    app.get('/quote/philosopher/:name', AuthorizeAdminOrLoggedInUser, (req, res) => {
         Logger.log('info', 'This is the GetQuotesByPhilosopherName method');
-            QuoteService.getByPhilosopher(req.params.name)
-                .then((response) => res.status(200).send(response))
-                .catch(err => res.status(400).send(`No quotes for: ${req.params.name} in the database.`));
-        }
-    );
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.getByPhilosopher(req.params.name));
+    });
 
-    app.delete('/quote/:id', (req, res) => {
-            QuoteService.remove(req.params.id)
-                .then((response) => res.status(200).send(response))
-                .catch(err => res.status(400).send(`failed to delete quote with ID: ${req.params.id}`));
-        }
-    );
+    app.delete('/quote/:id', AuthorizeAdminOrLoggedInUser, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.remove(req.params.id));
+    });
+
+    app.delete('/quote/:id/hardremove', AuthorizeAdmin, (req, res) => {
+        ResponseHelper.promiseResponseHandler(
+            req, res, QuoteService.hardRemove(req.params.id));
+    });
+
 };

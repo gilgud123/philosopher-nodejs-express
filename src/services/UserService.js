@@ -28,6 +28,8 @@ const getByToken = (token) => UserRepo.getByProperties({ resetPasswordToken: tok
 
 const remove = (id) => UserRepo.remove(id);
 
+const hardRemove = (id) => UserRepo.hardRemove(id);
+
 const authenticate = (email, password) => {
 
     return Promise.resolve(UserRepo.getByProperties({ email: email })
@@ -88,6 +90,7 @@ module.exports = {
     getByName,
     create,
     remove,
+    hardRemove,
     authenticate,
     requestResetPassword,
     resetPassword

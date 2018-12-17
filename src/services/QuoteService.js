@@ -18,11 +18,14 @@ const getByPhilosopher = (name) => QuoteRepo.getByProperties( {philosopher: name
 
 const remove = (id) => QuoteRepo.remove(id);
 
+const hardRemove = (id) => QuoteRepo.hardRemove(id);
+
 module.exports = {
     create,
     getAll,
     getById,
     getByPhilosopher,
     getByTopic,
-    remove
+    remove,
+    hardRemove
 };

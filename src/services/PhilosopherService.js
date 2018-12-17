@@ -27,6 +27,8 @@ const getByCategory = (category) => PhilosopherRepo.getByProperties({ categories
 
 const remove = (id) => PhilosopherRepo.remove(id);
 
+const hardRemove = (id) => PhilosopherRepo.hardRemove(id);
+
 module.exports = {
     update,
     patch,
@@ -35,5 +37,6 @@ module.exports = {
     getByName,
     getByCategory,
     create,
-    remove
+    remove,
+    hardRemove
 };
