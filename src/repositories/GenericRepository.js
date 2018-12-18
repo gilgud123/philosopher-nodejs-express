@@ -1,5 +1,5 @@
 const Mongoose = require('mongoose');
-Mongoose.connect(process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/philosopher-node-express');
+Mongoose.connect(process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost:27017/philosopher-node-express', { useNewUrlParser: true });
 
 const toObject = (obj) => obj.toObject();
 const listToObjects = (list) => list.map(toObject);
