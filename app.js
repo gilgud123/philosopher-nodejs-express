@@ -1,5 +1,6 @@
 require('app-module-path').addPath(`${__dirname}/src`);
 
+// Still in de test phase, no production yet, but we are ready ...
 process.env.NODE_ENV !== 'production' ? require('dotenv').load() : null;
 
 global.Config = require('./config/local.config.json');
@@ -40,9 +41,6 @@ require('resources/Topic')(app);
 require('resources/User')(app);
 require('resources/Auth')(app);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 /**
  * Seed method: uncomment as needed.
  */
@@ -62,4 +60,5 @@ const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', (req, res, next) => next());
 
+// check for Heroku settings if online, otherwise runs with local config setting    .
 app.listen(process.env.PORT || Config.port, () => Logger.log('info', `Philosopher Quote API started on port ${process.env.PORT || Config.port}`));
