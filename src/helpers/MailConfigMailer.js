@@ -1,8 +1,9 @@
 const nodemailer = require('nodemailer');
 const handlebars = require('handlebars');
-const email = 'kdv.code@gmail.com';
+const email = 'gilgud123@gmail.com';
 const password = 'Prutser123';
 const {resetPasswordTemplate} = require('mail-templates/Reset');
+const {confirmPasswordTemplate} = require('mail-templates/Confirm');
 
 const Logger = require('helpers/LoggerHelper');
 
@@ -29,6 +30,18 @@ const mail = (sendToEmail, subject, html) => {
     });
 };
 
+const confirmationMail = (user) => {
+    const data = {
+        lastName: user.lastName,
+        firstName: user.firstName
+    };
+    const handledTemplate = handlebars.compile(confirmPasswordTemplate);
+    const emailBody = handledTemplate(data);
+    const subject = `Your registration was successful!`;
+
+    return mail(user.email, subject, emailBody);
+};
+
 const resetPasswordMail = (user, token) => {
     const url = 'http://localhost:8081/password/reset/'+token;
     Logger.log('info', `This is the resetPasswordMail helper with the url ${url}`);
@@ -40,4 +53,4 @@ const resetPasswordMail = (user, token) => {
     return mail(user.email, subject, emailBody);
 };
 
-module.exports = { resetPasswordMail };
+module.exports = { resetPasswordMail, confirmationMail };

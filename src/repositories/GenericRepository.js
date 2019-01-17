@@ -1,4 +1,6 @@
 const Mongoose = require('mongoose');
+
+// Settings Heroku app at: https://philosopher-node-express.herokuapp.com/
 Mongoose.connect(process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost:27017/philosopher-node-express', { useNewUrlParser: true });
 
 const toObject = (obj) => obj.toObject();
@@ -13,7 +15,7 @@ const getByProperties = (model) => (where, addDeleted = false) => model.find(whe
 
 const create = (model) => (raw) => new model(raw).save().then(toObject);
 const update = (model) => (id, raw) => model.findOneAndUpdate({ _id: id}, { $set: raw }, { "new": true }).then(toObject);
-const patch = (model) => (id, raw) => model.findByIdAndUpdate({ _id: id}, { $set: raw }, { "new": true }).then(toObject);
+const patch = (model) => (id, raw) => model.findByIdAndUpdate({ _id: id}, { $set: raw }).then(toObject);
 
 // an item can by only removed by an admin (hardRemove method)
 const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true });
