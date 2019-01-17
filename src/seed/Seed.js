@@ -136,13 +136,13 @@ const topics = [
 const users = [
     {
         "name" : "Harold Finch",
-        "email" : "katya.devries@jstack.eu",
+        "email" : "kdv.code@gmail.com",
         "password" : "prutser123",
         "role" : 'admin'
     },
     {
         "name" : "John Reese",
-        "email" : "k.devries@scarlet.be",
+        "email" : "kdv.code@gmail.com",
         "password" : "prutser123"
     }
 ];

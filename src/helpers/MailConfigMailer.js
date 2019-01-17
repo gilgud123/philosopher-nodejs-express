@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const handlebars = require('handlebars');
-const email = 'gilgud123@gmail.com';
+const email = 'kdv.code@gmail.com';
 const password = 'Prutser123';
 const {resetPasswordTemplate} = require('mail-templates/Reset');
 
