@@ -1,6 +1,5 @@
 const Logger = require('helpers/LoggerHelper');
 
-//
 const AuthorizeAdmin = (req, res, next) => {
     if(req.requestor){
         let allow = false;
